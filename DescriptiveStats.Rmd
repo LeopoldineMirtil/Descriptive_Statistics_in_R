@@ -1,0 +1,212 @@
+---
+title: "Using Descriptive Statistics to Analyze Data in R: Coursera Guided Project"
+author: "Leopoldine Mirtil"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Disclaimer
+
+The data used is from the "Using Descriptive Statistics to Analyze Data in R" guided project with instructor Nikunj Maheshwari and offered through Coursera.com 
+
+### OBJECTIVE
+
+Guided project to calculate descriptive statistical metrics on a data set and create a data quality report file.
+
+### Task 1 - Load and View Data
+
+#### Set Directory 
+
+```{r}
+setwd("C:/Users/Leopoldine/Desktop/Mine/Coding Projects & Portfolio/Guided Projects/R Guided Project/DescriptiveStatisticsInR")
+```
+
+
+#### Load Library
+
+```{r, message=FALSE}
+library(tidyverse)
+library(rmarkdown)
+```
+
+
+#### Import and View Data
+
+```{r}
+data <- read.csv("data.csv")
+
+head(data)
+```
+
+
+### Task 2 - Calculate the Measure of Frequency Metrics
+
+#### Number of Observations in Column
+
+```{r}
+length(data$Transmission.Type)
+```
+
+
+#### Number of Unique Categories
+ 
+```{r}
+length(unique(data$Transmission.Type))   
+```
+
+
+#### Calculate Frequency Distribution of each Unique Category in a Column 
+
+```{r}
+table(data$Transmission.Type)
+```
+
+
+#### Store Output into Variable
+
+```{r}
+freq <- sort(table(data$Transmission.Type), decreasing = TRUE) 
+
+freq
+```
+
+
+### Task 3 - Calculate the Measure of Central Tendency Metrics 
+
+#### Mean
+  
+```{r}
+mean(data$Engine.HP)   
+
+mean(data$Engine.HP, na.rm=TRUE)  # 'na.rm=TRUE' removes missing values 
+```
+
+
+#### Median
+
+```{r}
+median(data$Engine.HP, na.rm=TRUE) 
+```
+
+
+#### Mode
+
+```{r}
+uniqueValues <- unique(data$Engine.HP) #finds all unique values in column and store it in variable
+
+uniqueValues [which.max(tabulate(match(data$Engine.HP, uniqueValues)))]  
+```
+
+
+### Task 4 - Calculate the Measure of Dispersion Metrics 
+
+```{r}
+min(data$Engine.HP, na.rm= TRUE)  
+
+max(data$Engine.HP, na.rm= TRUE)  
+
+range(data$Engine.HP, na.rm= TRUE) # gives mean and max values 
+
+var(data$Engine.HP, na.rm= TRUE)  # variance measures how much each value is varying/deviating from mean
+                            # doesn't use same units as the column and is not interpretable as a result
+
+sd(data$Engine.HP, na.rm= TRUE) # standard deviation measures average deviation off each value of mean
+                            # sq root of variance and has same units as the column
+```
+
+
+### Task 5 - Use R’s in-built Functions for Additional Data Quality Metrics
+
+#### Find Data Type of Column
+
+```{r}
+class(data$Engine.HP) 
+```
+
+#### Calculate Number of Missing Values
+
+```{r}
+sum(is.na(data$Transmission.Type)) 
+
+sum(is.na(data$Number.of.Doors))
+```
+
+
+### Task 6 - Create Custom R Function to Calculate Descriptive Statistics on any given Dataset 
+
+#### Count Total Values in each Column
+ 
+```{r}
+apply(data, MARGIN=2, length)
+```
+
+
+#### Find Minimum Value of each Column
+
+```{r}
+sapply(data, function(x) min(x, na.rm=TRUE)) 
+```
+
+
+#### Revise Import Formula
+
+```{r}
+data <- read.csv("data.csv", stringsAsFactors = FALSE) 
+```
+
+#### Create Dataframe showing all Descriptive 
+
+```{r}
+quality_data <- function(df=NULL){
+  if(is.null(df)) print("Please pass a non-empty data frame")
+  summary_table <- do.call(data.frame, 
+                           list(
+                             Min = sapply(df, function(x) min(x, na.rm=TRUE)),
+                             Max = sapply(df, function(x) max(x, na.rm=TRUE)),
+                             Mean = sapply(df, function(x) mean(x, na.rm=TRUE)),
+                             SD = sapply(df, function(x) sd(x, na.rm=TRUE)),
+                             Total = apply(df, 2, length),
+                             NULLS = sapply(df, function(x) sum(is.na(x))),
+                             Unique = sapply(df, function(x) length(unique(x))),
+                             dataType = sapply(df, class)
+                           ))
+  nums <- vapply(summary_table, is.numeric, FUN.VALUE = logical(1))
+  summary_table[,nums] <- round(summary_table[, nums], digits = 3)
+  return(summary_table)
+}
+```
+
+
+### Task 7 - Export Results of Descriptive Statistics to a Data Quality Report File 
+
+#### Use New Function to View Summary Statistics
+
+```{r, warning=FALSE, message=FALSE, error=FALSE}
+df_quality <- quality_data(data)
+```
+
+#### Convert Row Names into Separate Columns
+
+```{r, warning=FALSE, message=FALSE}
+df_quality <- cbind(Columns=rownames(df_quality), 
+                    data.frame(df_quality, row.names = NULL))  
+```
+
+#### Export File
+
+```{r}
+write.csv(df_quality, "Data Quality Report.csv", row.names = FALSE)
+```
+
+#### Export File without Overwriting
+
+```{r}
+write.csv(df_quality, paste("Data Quality Report",
+          format(Sys.time(), "%d-%m-%Y-%H%M%S"),
+          ".csv"), 
+          row.names = FALSE)
+```
