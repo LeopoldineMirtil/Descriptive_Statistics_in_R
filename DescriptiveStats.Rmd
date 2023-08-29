@@ -187,6 +187,8 @@ quality_data <- function(df=NULL){
 
 ```{r, warning=FALSE, message=FALSE, error=FALSE}
 df_quality <- quality_data(data)
+
+df_quality 
 ```
 
 #### Convert Row Names into Separate Columns
@@ -194,6 +196,9 @@ df_quality <- quality_data(data)
 ```{r, warning=FALSE, message=FALSE}
 df_quality <- cbind(Columns=rownames(df_quality), 
                     data.frame(df_quality, row.names = NULL))  
+
+
+df_quality 
 ```
 
 #### Export File

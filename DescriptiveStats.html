@@ -11,7 +11,7 @@
 
 <meta name="author" content="Leopoldine Mirtil" />
 
-<meta name="date" content="2023-08-06" />
+<meta name="date" content="2023-08-28" />
 
 <title>Using Descriptive Statistics to Analyze Data in R: Coursera Guided Project</title>
 
@@ -353,7 +353,7 @@ display: none;
 <h1 class="title toc-ignore">Using Descriptive Statistics to Analyze
 Data in R: Coursera Guided Project</h1>
 <h4 class="author">Leopoldine Mirtil</h4>
-<h4 class="date">2023-08-06</h4>
+<h4 class="date">2023-08-28</h4>
 
 </div>
 
@@ -560,12 +560,85 @@ Statistics on any given Dataset</h3>
 Report File</h3>
 <div id="use-new-function-to-view-summary-statistics" class="section level4">
 <h4>Use New Function to View Summary Statistics</h4>
-<pre class="r"><code>df_quality &lt;- quality_data(data)</code></pre>
+<pre class="r"><code>df_quality &lt;- quality_data(data)
+
+df_quality </code></pre>
+<pre><code>##                                Min                Max      Mean        SD Total
+## Make                         Acura              Volvo        NA        NA 11914
+## Model                     1 Series             Zephyr        NA  1486.006 11914
+## Year                          1990               2017  2010.384     7.580 11914
+## Engine.Fuel.Type                     regular unleaded        NA        NA 11914
+## Engine.HP                       55               1001   249.386   109.192 11914
+## Engine.Cylinders                 0                 16     5.629     1.781 11914
+## Transmission.Type AUTOMATED_MANUAL            UNKNOWN        NA        NA 11914
+## Driven_Wheels      all wheel drive   rear wheel drive        NA        NA 11914
+## Number.of.Doors                  2                  4     3.436     0.881 11914
+## Market.Category          Crossover Performance,Hybrid        NA        NA 11914
+## Vehicle.Size               Compact            Midsize        NA        NA 11914
+## Vehicle.Style        2dr Hatchback              Wagon        NA        NA 11914
+## highway.MPG                     12                354    26.637     8.863 11914
+## city.mpg                         7                137    19.733     8.988 11914
+## Popularity                       2               5657  1554.911  1441.855 11914
+## MSRP                          2000            2065902 40594.737 60109.104 11914
+##                   NULLS Unique  dataType
+## Make                  0     48 character
+## Model                 0    915 character
+## Year                  0     28   integer
+## Engine.Fuel.Type      0     11 character
+## Engine.HP            69    357   integer
+## Engine.Cylinders     30     10   integer
+## Transmission.Type     0      5 character
+## Driven_Wheels         0      4 character
+## Number.of.Doors       6      4   integer
+## Market.Category       0     72 character
+## Vehicle.Size          0      3 character
+## Vehicle.Style         0     16 character
+## highway.MPG           0     59   integer
+## city.mpg              0     69   integer
+## Popularity            0     48   integer
+## MSRP                  0   6049   integer</code></pre>
 </div>
 <div id="convert-row-names-into-separate-columns" class="section level4">
 <h4>Convert Row Names into Separate Columns</h4>
 <pre class="r"><code>df_quality &lt;- cbind(Columns=rownames(df_quality), 
-                    data.frame(df_quality, row.names = NULL))  </code></pre>
+                    data.frame(df_quality, row.names = NULL))  
+
+
+df_quality </code></pre>
+<pre><code>##              Columns              Min                Max      Mean        SD
+## 1               Make            Acura              Volvo        NA        NA
+## 2              Model         1 Series             Zephyr        NA  1486.006
+## 3               Year             1990               2017  2010.384     7.580
+## 4   Engine.Fuel.Type                    regular unleaded        NA        NA
+## 5          Engine.HP               55               1001   249.386   109.192
+## 6   Engine.Cylinders                0                 16     5.629     1.781
+## 7  Transmission.Type AUTOMATED_MANUAL            UNKNOWN        NA        NA
+## 8      Driven_Wheels  all wheel drive   rear wheel drive        NA        NA
+## 9    Number.of.Doors                2                  4     3.436     0.881
+## 10   Market.Category        Crossover Performance,Hybrid        NA        NA
+## 11      Vehicle.Size          Compact            Midsize        NA        NA
+## 12     Vehicle.Style    2dr Hatchback              Wagon        NA        NA
+## 13       highway.MPG               12                354    26.637     8.863
+## 14          city.mpg                7                137    19.733     8.988
+## 15        Popularity                2               5657  1554.911  1441.855
+## 16              MSRP             2000            2065902 40594.737 60109.104
+##    Total NULLS Unique  dataType
+## 1  11914     0     48 character
+## 2  11914     0    915 character
+## 3  11914     0     28   integer
+## 4  11914     0     11 character
+## 5  11914    69    357   integer
+## 6  11914    30     10   integer
+## 7  11914     0      5 character
+## 8  11914     0      4 character
+## 9  11914     6      4   integer
+## 10 11914     0     72 character
+## 11 11914     0      3 character
+## 12 11914     0     16 character
+## 13 11914     0     59   integer
+## 14 11914     0     69   integer
+## 15 11914     0     48   integer
+## 16 11914     0   6049   integer</code></pre>
 </div>
 <div id="export-file" class="section level4">
 <h4>Export File</h4>
