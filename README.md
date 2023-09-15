@@ -2,13 +2,12 @@ Using Descriptive Statistics to Analyze Data in R: Coursera Guided
 Project
 ================
 Leopoldine Mirtil
-2023-08-28
 
-### Disclaimer
+### DATA SOURCE
 
-The data used is from the “Using Descriptive Statistics to Analyze Data
-in R” guided project with instructor Nikunj Maheshwari and offered
-through Coursera.com
+The data is from the “Using Descriptive Statistics to Analyze Data
+in R” guided project course offered through Coursera.com and taught by 
+instructor Nikunj Maheshwari. 
 
 ### OBJECTIVE
 
