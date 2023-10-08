@@ -352,15 +352,14 @@ display: none;
 <h1 class="title toc-ignore">Using Descriptive Statistics to Analyze
 Data in R: Coursera Guided Project</h1>
 <h4 class="author">Leopoldine Mirtil</h4>
-<h4 class="date">2023-08-28</h4>
 
 </div>
 
 
-<div id="disclaimer" class="section level3">
+<div id="data-source" class="section level3">
 <h3>DATA SOURCE</h3>
-<p>The data is from the “Using Descriptive Statistics to Analyze Data
-in R” guided project course offered through Coursera.com and taught by 
+<p>The data is from the “Using Descriptive Statistics to Analyze Data in
+R” guided project course offered through Coursera.com and taught by
 instructor Nikunj Maheshwari.</p>
 </div>
 <div id="objective" class="section level3">
@@ -472,19 +471,31 @@ uniqueValues [which.max(tabulate(match(data$Engine.HP, uniqueValues)))]  </code>
 </div>
 <div id="task-4---calculate-the-measure-of-dispersion-metrics" class="section level3">
 <h3>Task 4 - Calculate the Measure of Dispersion Metrics</h3>
+<div id="minimum" class="section level4">
+<h4>Minimum</h4>
 <pre class="r"><code>min(data$Engine.HP, na.rm= TRUE)  </code></pre>
 <pre><code>## [1] 55</code></pre>
-<pre class="r"><code>max(data$Engine.HP, na.rm= TRUE)  </code></pre>
+</div>
+<div id="maximum" class="section level4">
+<h4>Maximum</h4>
+<pre class="r"><code>max(data$Engine.HP, na.rm= TRUE)</code></pre>
 <pre><code>## [1] 1001</code></pre>
-<pre class="r"><code>range(data$Engine.HP, na.rm= TRUE) # gives mean and max values </code></pre>
+</div>
+<div id="range" class="section level4">
+<h4>Range</h4>
+<pre class="r"><code>range(data$Engine.HP, na.rm= TRUE) # gives mean and max values</code></pre>
 <pre><code>## [1]   55 1001</code></pre>
-<pre class="r"><code>var(data$Engine.HP, na.rm= TRUE)  # variance measures how much each value is varying/deviating from mean</code></pre>
+</div>
+<div id="variance" class="section level4">
+<h4>Variance</h4>
+<pre class="r"><code>var(data$Engine.HP, na.rm= TRUE)  #measures how much each value is varying/deviating from mean</code></pre>
 <pre><code>## [1] 11922.86</code></pre>
-<pre class="r"><code>                            # doesn&#39;t use same units as the column and is not interpretable as a result
-
-sd(data$Engine.HP, na.rm= TRUE) # standard deviation measures average deviation off each value of mean</code></pre>
+</div>
+<div id="standard-variance" class="section level4">
+<h4>Standard Variance</h4>
+<pre class="r"><code>sd(data$Engine.HP, na.rm= TRUE) #measures average deviation of each value of mean</code></pre>
 <pre><code>## [1] 109.1919</code></pre>
-<pre class="r"><code>                            # sq root of variance and has same units as the column</code></pre>
+</div>
 </div>
 <div id="task-5---use-rs-in-built-functions-for-additional-data-quality-metrics" class="section level3">
 <h3>Task 5 - Use R’s in-built Functions for Additional Data Quality

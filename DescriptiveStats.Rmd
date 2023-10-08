@@ -103,18 +103,38 @@ uniqueValues [which.max(tabulate(match(data$Engine.HP, uniqueValues)))]
 
 ### Task 4 - Calculate the Measure of Dispersion Metrics 
 
+#### Minimum
+
 ```{r}
 min(data$Engine.HP, na.rm= TRUE)  
+```
 
-max(data$Engine.HP, na.rm= TRUE)  
 
-range(data$Engine.HP, na.rm= TRUE) # gives mean and max values 
+#### Maximum
 
-var(data$Engine.HP, na.rm= TRUE)  # variance measures how much each value is varying/deviating from mean
-                            # doesn't use same units as the column and is not interpretable as a result
+```{r}
+max(data$Engine.HP, na.rm= TRUE)
+```
 
-sd(data$Engine.HP, na.rm= TRUE) # standard deviation measures average deviation off each value of mean
-                            # sq root of variance and has same units as the column
+
+#### Range
+
+```{r}
+range(data$Engine.HP, na.rm= TRUE) # gives mean and max values
+```
+
+
+#### Variance
+
+```{r}
+var(data$Engine.HP, na.rm= TRUE)  #measures how much each value is varying/deviating from mean
+```
+
+
+#### Standard Variance
+
+```{r}
+sd(data$Engine.HP, na.rm= TRUE) #measures average deviation of each value of mean
 ```
 
 
