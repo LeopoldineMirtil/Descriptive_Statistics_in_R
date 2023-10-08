@@ -174,7 +174,6 @@ range(data$Engine.HP, na.rm= TRUE) # gives mean and max values
 
 ``` r
 var(data$Engine.HP, na.rm= TRUE)  #measures how much each value is varying/deviating from mean
-                                  #different units from the column and not interpretable 
 ```
 
     ## [1] 11922.86
@@ -182,8 +181,7 @@ var(data$Engine.HP, na.rm= TRUE)  #measures how much each value is varying/devia
 #### Standard Deviation
 
 ``` r
-sd(data$Engine.HP, na.rm= TRUE) #measures average deviation off each value of mean
-                                #is the square root of the variance and hasthe same units as the column
+sd(data$Engine.HP, na.rm= TRUE) #measures average deviation of each value of mean
 ```
 
     ## [1] 109.1919
