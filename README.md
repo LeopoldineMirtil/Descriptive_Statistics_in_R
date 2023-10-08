@@ -146,11 +146,15 @@ uniqueValues [which.max(tabulate(match(data$Engine.HP, uniqueValues)))]
 
 ### Task 4 - Calculate the Measure of Dispersion Metrics
 
+#### Minimum
+
 ``` r
 min(data$Engine.HP, na.rm= TRUE)  
 ```
 
     ## [1] 55
+
+#### Maximum
 
 ``` r
 max(data$Engine.HP, na.rm= TRUE)  
@@ -158,29 +162,33 @@ max(data$Engine.HP, na.rm= TRUE)
 
     ## [1] 1001
 
+#### Range
+
 ``` r
 range(data$Engine.HP, na.rm= TRUE) # gives mean and max values 
 ```
 
     ## [1]   55 1001
 
+#### Variance
+
 ``` r
-var(data$Engine.HP, na.rm= TRUE)  # variance measures how much each value is varying/deviating from mean
+var(data$Engine.HP, na.rm= TRUE)  #measures how much each value is varying/deviating from mean
+                                  #different units from the column and not interpretable 
 ```
 
     ## [1] 11922.86
 
-``` r
-                            # doesn't use same units as the column and is not interpretable as a result
+#### Standard Deviation
 
-sd(data$Engine.HP, na.rm= TRUE) # standard deviation measures average deviation off each value of mean
+``` r
+sd(data$Engine.HP, na.rm= TRUE) #measures average deviation off each value of mean
+                                #is the square root of the variance and hasthe same units as the column
 ```
 
     ## [1] 109.1919
 
-``` r
-                            # sq root of variance and has same units as the column
-```
+
 
 ### Task 5 - Use R’s in-built Functions for Additional Data Quality Metrics
 
